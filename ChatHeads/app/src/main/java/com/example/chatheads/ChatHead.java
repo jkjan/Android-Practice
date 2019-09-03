@@ -4,16 +4,20 @@ import android.app.Service;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
 public class ChatHead extends Service {
+
+    int exp = 0;
 
     private WindowManager windowManager;
     private View chatheadView;
@@ -24,6 +28,15 @@ public class ChatHead extends Service {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        exp = (int) intent.getExtras().get("which");
+        Log.i("받았음", Integer.toString(exp) + "를 받아요");
+        TextView whatthefuck = chatheadView.findViewById(R.id.kakao);
+        whatthefuck.setText(Integer.toString(exp));
+        return exp;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -31,7 +44,8 @@ public class ChatHead extends Service {
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_PHONE,
+                //WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT
                 );
@@ -40,11 +54,20 @@ public class ChatHead extends Service {
         params.x = 0;
         params.y = 100;
 
+        Button close = chatheadView.findViewById(R.id.bt_finish);
+        Log.i("www", Integer.toString(exp));
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopSelf();
+            }
+        });
+
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         windowManager.addView(chatheadView, params);
 
-        ImageView chatheadImage = chatheadView.findViewById(R.id.chathead_image);
-        chatheadImage.setOnTouchListener(
+        RelativeLayout chatheadBubble = chatheadView.findViewById(R.id.chathead_bubble);
+        chatheadBubble.setOnTouchListener(
                 new View.OnTouchListener() {
                     private int initialX;
                     private int initialY;
@@ -109,5 +132,4 @@ public class ChatHead extends Service {
             windowManager.removeView(chatheadView);
         }
     }
-
 }

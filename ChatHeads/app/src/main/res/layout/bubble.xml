@@ -2,12 +2,23 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="65dp"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:id="@+id/chathead_bubble"
     android:orientation="vertical"
     >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        >
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -15,5 +26,53 @@
         android:src="@mipmap/ic_launcher_round"
         tools:ignore="ContentDescription"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="이 버튼을 누르세요"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kakao"
+        android:textColor="#FF0000">
+    </TextView>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_prev"
+        android:text="이전"
+        >
+    </Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_finish"
+            android:text="종료"
+            >
+        </Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_next"
+            android:text="다음"
+            >
+        </Button>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

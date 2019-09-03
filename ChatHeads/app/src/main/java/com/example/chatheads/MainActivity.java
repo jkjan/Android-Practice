@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     public final static int PERMISSION_REQUEST_CODE = 1;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else {
-            showChatHead();
+            showChatHead(1);
         }
 
     }
@@ -35,13 +36,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                showChatHead();
+                showChatHead(1);
+                Log.i("ㄴㅇㄴ", "ㄴㅇㄴㅇ");
+
             }
         }
     }
 
-    public void showChatHead() {
-        startService(new Intent(MainActivity.this, ChatHead.class));
+    public void showChatHead(int which) {
+        Intent intent = new Intent(MainActivity.this, ChatHead.class);
+        Log.i("www", Integer.toString(which) + " 를 전달함");
+        intent.putExtra("which", which);
+        startService(intent);
     }
 
 }
