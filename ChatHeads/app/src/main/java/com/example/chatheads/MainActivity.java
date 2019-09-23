@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 showChatHead(1);
                 Log.i("ㄴㅇㄴ", "ㄴㅇㄴㅇ");
-
             }
         }
     }
