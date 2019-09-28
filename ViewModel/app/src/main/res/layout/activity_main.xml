@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="4"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class = "ActivityMainBinding">
+        <variable
+            name="vm"
+            type="com.example.viewmodel.viewmodels.MainActivityViewModel" />
+        <variable
+            name="move"
+            type="com.example.viewmodel.CodeBlock"/>
+
+    </data>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="4"
+        >
+
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -38,14 +53,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
-        <Button
+        <TextView
             android:id="@+id/bt_move"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/move"
             android:textAllCaps="false"
-            android:textColor="@color/Black" />
+            android:textColor="@color/Black"
+            android:onClick="@{()->vm.addNewBlock(move)}" />
 
         <Button
             android:id="@+id/bt_turnLeft"
@@ -75,4 +91,5 @@
             android:textColor="@color/Black" />
 
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MVVM</string>
+    <string name = "move">move();</string>
+    <string name = "left">turnLeft();</string>
+    <string name = "right">turnRight();</string>
+    <string name = "pickAxe">pickAxe();</string>
+</resources>

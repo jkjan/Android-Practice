@@ -1,13 +1,11 @@
+package com.example.mvvm
 
 import android.content.Context
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.viewmodel.R
-
-class CodeBlock (val funcName : String, val funcAbbrev : String)
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 class CodeBlockAdapter(val mContext: Context, val CodeBlocks: ArrayList<CodeBlock>) :
     RecyclerView.Adapter<CodeBlockAdapter.Holder>() {

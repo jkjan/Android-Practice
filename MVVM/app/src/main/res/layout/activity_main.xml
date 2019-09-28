@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="ActivityMainBinding">
+        <variable
+            name="vm"
+            type="com.example.mvvm.MainActivityViewModel" />
+        <variable
+            name="repo"
+            type="com.example.mvvm.CodeBlocksRepository" />
+        <variable
+            name="codeBlock"
+            type="java.util.ArrayList"/>
+        <variable
+            name="block"
+            type="com.example.mvvm.CodeBlock" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:src="@drawable/grid"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_code_block_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="16dp"
+            android:text="RUN"
+            android:textColor="@color/Black"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <TextView
+                android:id="@+id/bt_move"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/move"
+                android:textAllCaps="false"
+                android:textColor="@color/Black"
+                android:onClick="@{vm.addNewBlock(codeBlock[0])}"/>
+
+            <TextView
+                android:id="@+id/bt_turnLeft"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left"
+                android:textAllCaps="false"
+                android:textColor="@color/Black"
+                android:onClick="@{vm.addNewBlock(codeBlock.get(1))}"/>
+
+            <TextView
+                android:id="@+id/bt_turnRight"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/right"
+                android:onClick="@{vm.addNewBlock(codeBlock.get(2))}"
+                android:textAllCaps="false"
+                android:textColor="@color/Black" />
+
+            <TextView
+                android:id="@+id/bt_pickAxe"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pickAxe"
+                android:onClick="@{vm.addNewBlock(codeBlock.get(3))}"
+                android:textAllCaps="false"
+                android:textColor="@color/Black" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

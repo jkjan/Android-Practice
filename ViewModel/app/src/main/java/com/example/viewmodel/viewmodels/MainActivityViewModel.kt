@@ -1,11 +1,12 @@
 package com.example.viewmodel.viewmodels
 
-import CodeBlock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.viewmodel.repositories.CodeBlocksRepository
 import android.os.AsyncTask
+import android.util.Log
+import com.example.viewmodel.CodeBlock
 
 class MainActivityViewModel : ViewModel() {
     //MutableLiveData extends LivaData, which it allows a user to modify objects not only to observe
@@ -27,18 +28,10 @@ class MainActivityViewModel : ViewModel() {
 
     fun addNewBlock(codeBlock : CodeBlock) {
         mIsUpdating.value = true
-
-        object : AsyncTask<Void, Void, Void>() {
-            override fun onPostExecute(aVoid: Void?) {
-                super.onPostExecute(aVoid)
+                Log.i("${codeBlock.funcName} ", "${codeBlock.funcAbbrev}")
                 val currentPlaces : ArrayList<CodeBlock> = mCodeBlock!!.value!!
-                currentPlaces.add(codeBlock)
+                mCodeBlock.value.add(codeBlock)
                 mCodeBlock!!.postValue(currentPlaces)
                 mIsUpdating.postValue(false)
-            }
-            override fun doInBackground(vararg voids: Void?): Void? {
-                return null
-            }
-        }.execute()
     }
 }
